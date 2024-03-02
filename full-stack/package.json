@@ -1,0 +1,21 @@
+{
+  "name": "full-stack",
+  "version": "1.0.0",
+  "description": "Full Stack development task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "author": "Zeeshan Haider",
+  "dependencies": {
+    "async": "^3.2.5",
+    "express": "^4.18.3",
+    "http": "^0.0.1-security",
+    "node-fetch": "^3.3.2",
+    "request": "^2.88.2",
+    "rsvp": "^4.8.5",
+    "url": "^0.11.3"
+  }
+}
