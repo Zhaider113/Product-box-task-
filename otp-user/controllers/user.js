@@ -3,7 +3,7 @@ const { user, Sequelize } = require("../models"),
 const Op = Sequelize.Op;
 
         // Generate a four-digit OTP
-const generateOTP = async () => {
+const generateOTP =  () => {
     const digits = '0123456789';
     let OTP = '';
     for (let i = 0; i < 4; i++) {
@@ -16,12 +16,12 @@ const generateOTP = async () => {
 module.exports.createUser = async (req, res, next) => {
     try {
         let { name, phone_number} = req.body;
-        if(name != '' && phone_number != '') {
+        if(!name && !phone_number) {
             const userData = {
                 name: name,
                 phone_number: phone_number
             };
-            await user.create(userData).then(async function (user) {
+            await user.create(userData).then(function (user) {
                     return res.send({ 
                         success: true,
                         message: `User Created Successfuly!`
@@ -45,7 +45,7 @@ module.exports.generateOTP = async (req, res, next) => {
     try {
         console.log(req.body)
         let { phone_number} = req.body;
-        if(phone_number != '') {
+        if(phone_number) {
             let userFind = await user.findOne({where: {phone_number: phone_number}});
             if(userFind){
             let OTP = await generateOTP();
@@ -59,7 +59,7 @@ module.exports.generateOTP = async (req, res, next) => {
                 where: {
                     id: userFind.id,
                 }
-            }).then(async function (userOTP) {
+            }).then(function (userOTP) {
                     return res.send({ 
                         success: true,
                         message: `User OTP is ${OTP} verify your account!`
